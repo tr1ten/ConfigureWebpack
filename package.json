@@ -3,7 +3,8 @@
   "scripts": {
     "start": "webpack serve",
     "watch": "webpack --watch",
-    "build": "webpack"
+    "build": "webpack",
+    "clean": "rm -rf dist"
   },
   "keywords": [],
   "author": "",
