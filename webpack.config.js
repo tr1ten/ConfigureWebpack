@@ -1,3 +1,4 @@
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 module.exports = {
   mode: "development",
   devtool: false,
@@ -10,8 +11,13 @@ module.exports = {
           loader: "babel-loader",
         },
       },
+      {
+        test:/\.css$/i,
+        use:[MiniCssExtractPlugin.loader,"css-loader"]
+      }
     ],
   },
+  plugins:[new MiniCssExtractPlugin()],
   devServer: {
     static: "./dist",
   },
