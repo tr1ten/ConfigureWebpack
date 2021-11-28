@@ -12,7 +12,7 @@ module.exports = {
         },
       },
       {
-        test:/\.s?css$/i,
+        test:/\.(s[ac]|c)ss$/i,
         use:[MiniCssExtractPlugin.loader,"css-loader","postcss-loader","sass-loader"]
       }
     ],
@@ -20,5 +20,6 @@ module.exports = {
   plugins:[new MiniCssExtractPlugin()],
   devServer: {
     static: "./dist",
+    hot:true,
   },
 };
