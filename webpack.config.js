@@ -1,8 +1,12 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const {CleanWebpackPlugin} = require("clean-webpack-plugin");
+const path = require("path");
 module.exports = {
   mode: "development",
   devtool: false,
   output: {
+    path: path.resolve(__dirname, "dist"),
     assetModuleFilename: "images/[hash][ext][query]",
   },
   module: {
@@ -23,7 +27,7 @@ module.exports = {
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
-            options:{publicPath:""}
+            options: { publicPath: "" },
           },
           "css-loader",
           "postcss-loader",
@@ -35,7 +39,13 @@ module.exports = {
   resolve: {
     extensions: [".js", ".jsx"],
   },
-  plugins: [new MiniCssExtractPlugin()],
+  plugins: [
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin(),
+    new HtmlWebpackPlugin({
+      template: "./src/index.html",
+    }),
+  ],
   devServer: {
     static: "./dist",
     hot: true,
